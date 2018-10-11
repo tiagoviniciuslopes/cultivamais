@@ -10,15 +10,15 @@
 			#header{
 				width: 100%;
 				height: 20%;
-				background-color: #696969;
+				background-color: #52BE80;
 				border-bottom-style: solid;
 				border-bottom-color: white;
 				border-bottom-width: 2px;
 				border-radius: 10px;
-				background-image: url("backgrounds.jpg");
-				background-position: center; /* Center the image */
+				/*background-image: url("backgrounds.jpg");
+				background-position: center;
   				background-repeat: no-repeat;
-  				background-size: cover;
+  				background-size: cover;*/
 
 			}
 			#logo{
@@ -31,7 +31,7 @@
 				float: right;
 				padding: 10px;
 				height:100%;
-				width: 15%;
+				width: 16%;
 			}
 			input{
 				margin-bottom:30px;
@@ -43,11 +43,11 @@
 				height: 80%;
 				background-color: white;
 				border-radius: 10px;
-				background-color: #05CB2A;
-				background-image: url("backgrounds.jpg");
-				background-position: center; /* Center the image */
+				background-color: #52BE80;
+				/*background-image: url("backgrounds.jpg");
+				background-position: center;
   				background-repeat: no-repeat;
-  				background-size: cover;
+  				background-size: cover;*/
 			}
 			#map{
 				position: relative;
@@ -58,16 +58,23 @@
 				background-color: white;
 				text-align:center;
 			}
-			#button{
+			.button{
 				border-radius: 30px;
 				background-color: white;
 				padding: 5%;
 				font-size: 25px;
+				border-width: 0;
+				color:#145A32;
 			}
 			label{
 				font-family: 'ABeeZee';
 				font-size: 25px;
+				color:#145A32;
 			}
+			#login-form{
+				float: left;
+			}
+			
 		</style>
 
 	</head>
@@ -81,11 +88,17 @@
 				</div>
 				
 				<div id='login'>
-					 <form id='login-form'>
-					  <label for='usuario'>Usuario:</label> <input id='usuario' type="text" name="usuario"><br>
-					  <label for='password'>Senha:</label> <input id='password' type="password" name="senha"><br>
-					  <input id='button' type='submit' value='Entrar'>
-					</form> 
+					<form id='login-form'>
+						<label for='usuario'>Usuario:</label> <input id='usuario' type="text" name="usuario"><br>
+						<label for='password'>Senha:</label> <input id='password' type="password" name="senha"><br>
+						<input class='button' type='submit' value='Entrar'>
+
+						<form id='signup-form'>
+							<input class='button' type="submit" value="Cadastrar">
+						</form> 
+
+					</form>
+					
 				</div>
 			</div>
 			
