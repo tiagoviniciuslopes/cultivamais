@@ -31,16 +31,12 @@
 				border-bottom-color: white;
 				border-bottom-width: 2px;
 				border-radius: 10px;
-				/*background-image: url("backgrounds.jpg");
-				background-position: center;
-  				background-repeat: no-repeat;
-  				background-size: cover;*/
 
 			}
 			#logo{
 				text-align:center;
 				float: left;
-				width:50%;
+				width:40%;
 				height:100%;
 			}
 			#login{
@@ -57,22 +53,31 @@
 			#body{
 				width: 100%;
 				height: 80%;
-				background-color: white;
 				border-radius: 10px;
 				background-color: #52BE80;
-				/*background-image: url("backgrounds.jpg");
-				background-position: center;
-  				background-repeat: no-repeat;
-  				background-size: cover;*/
 			}
 			#map{
 				position: relative;
-				top: 2.5%;
-				left: 25%;
 				height:95%;
-				width:50%;
-				background-color: #fff;
-				text-align:center;
+				width:65%;
+				float: right;
+				top: 1%;
+				right: 3%;
+			}
+			#instructions{
+				font-size:32px;
+				text-shadow: 0.5px 0.5px 0.5px white;
+				color:white;
+				float:left;
+				width:30%;
+				height:95%;
+				padding-top:3%;
+				padding-left: 3%;
+				font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+			}
+			ol{
+				list-style-type: decimal;
 			}
 			.button{
 				border-radius: 30px;
@@ -89,6 +94,9 @@
 			}
 			#login-form{
 				float: left;
+			}
+			h1{
+				text-align: center;
 			}
 			
 		</style>
@@ -111,9 +119,19 @@
 			</div>
 			
 			<div id='body'>
+				<div id='instructions'>
+					<h1>PASSOS</h1>
+					<ol id='steps'>
+						<li>Procure seu talhao no mapa</li>
+						<li>Selecione o talhao clicando <br>com o mouse ao redor dele</li>
+						<li>Certifique-se de que os pontos<br> se conectam no fim</li>
+						<li>Clique na aba KML</li>
+						<li>Clique em download</li>
+						<li>Envie o KML baixado para o <br>email orcamentos@cultivamais.com.br</li>
+					</ol>
+				</div>
 				<div id='map'>
-					<!-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1zJTLpI1dgEJkqtpwtDHLE0GuerqVq3zp&ll=-9.797515032275946%2C0&z=2&z=13" width="100%" height="100%"></iframe> -->
-					<iframe src="https://www.doogal.co.uk/polylines.php#tabs" scrolling="no">
+					<iframe src="https://www.doogal.co.uk/polylines.php#tabs" scrolling="no" frameBorder="0">
 					</iframe>
 				</div>
 			</div>
