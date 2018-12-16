@@ -44,7 +44,7 @@
 				float: right;
 				padding: 10px;
 				height:100%;
-				width: 16%;
+				width: 26%;
 			}
 			input{
 				margin-bottom:30px;
@@ -96,6 +96,12 @@
 			#login-form{
 				float: left;
 			}
+			.bemVindo{
+				width:100%;
+			}
+			.left{
+				align: left;
+			}
 			h1{
 				text-align: center;
 			}
@@ -111,12 +117,42 @@
 					<img src='logo.png'>
 				</div>
 				
-				<div id='login'>
-					<form id='login-form'>
-						
-					</form>
-					
-				</div>
+				<?php
+					require_once "Usuario.php";
+
+					session_start();
+					$user = null;
+					if($_SESSION['usuarioLogado']->getEmail()==null ){
+						echo"<div id='login'>
+							<form id='login-form' class='form-horizontal' role='form' action='ControllerUsuario.php' method='POST'>
+								<label for='email' class='col-md-3 col-sm-3 control-label'>Email</label>
+								<div class='col-md-9 col-sm-9'>
+									<input type='text' class='form-control email required' name='email' id='email' placeholder='Email'>
+								</div>
+								<div class='form-group'>
+									<label for='senha' class='col-md-3 col-sm-3 control-label'>Senha</label>
+									<div class='col-md-9 col-sm-9'>
+									<input type='password' class='form-control required' id='senha' name='senha' placeholder='Senha'>
+									</div>
+								</div>
+								<div class='col-md-offset-2 col-md-5'>
+									<button type='submit' class='btn btn-default'>Logar</button>
+									<a href='cadastro.php' class='btn btn-default'>Cadastre-se</a>
+									<input type='hidden' name='acao' value='consultar'>
+								</div>
+							</form>
+						</div>";
+					}else{
+						//session_start();
+						$user = $_SESSION["usuarioLogado"];
+						echo"<div id='login' class='col-md-9 col-sm-9'><form id='login-form' class='form-horizontal' role='form' action='ControllerUsuario.php' method='POST'>
+								<div class='col-md-9 col-sm-9 row bemVindo'><label for='email' class='col-md-3 col-sm-3 control-label bemVindo'>Bem vindo " . $user->getNome() . "</label></div>
+								<input type='hidden' name='acao' value='consultar'>
+								<div class='col-md-offset-2 col-md-5 left'><button type='submit' class='btn btn-default left'>Sair</button></div>
+								</form></div>";
+					}
+				?>
+
 			</div>
 			
 			<div id='body'>
