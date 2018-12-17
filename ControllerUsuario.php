@@ -67,12 +67,14 @@
 			$daoUsu = new DaoUsuario();
 			$usu = new Usuario();
 			
+			session_start();
+
 			if(isset($_POST["email"])){
 				$usu->setEmail($_POST["email"]);
 			}
             $vetCliente = $daoUsu->consultar($usu->getEmail());
             
-            session_start();
+            
             $_SESSION['usuarioLogado'] = $vetCliente;
             session_write_close();
             

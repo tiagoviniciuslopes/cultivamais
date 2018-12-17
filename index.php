@@ -119,10 +119,11 @@
 				
 				<?php
 					require_once "Usuario.php";
-
 					session_start();
+					
+					
 					$user = null;
-					if($_SESSION['usuarioLogado']->getEmail()==null ){
+					if(!isset($_SESSION['usuarioLogado']) || $_SESSION['usuarioLogado']->getNome()==null ){
 						echo"<div id='login'>
 							<form id='login-form' class='form-horizontal' role='form' action='ControllerUsuario.php' method='POST'>
 								<label for='email' class='col-md-3 col-sm-3 control-label'>Email</label>
@@ -144,7 +145,8 @@
 						</div>";
 					}else{
 						//session_start();
-						$user = $_SESSION["usuarioLogado"];
+						
+						$user = $_SESSION["usuarioLogado"]; 
 						echo"<div id='login' class='col-md-9 col-sm-9'><form id='login-form' class='form-horizontal' role='form' action='ControllerUsuario.php' method='POST'>
 								<div class='col-md-9 col-sm-9 row bemVindo'><label for='email' class='col-md-3 col-sm-3 control-label bemVindo'>Bem vindo " . $user->getNome() . "</label></div>
 								<input type='hidden' name='acao' value='consultar'>
@@ -159,6 +161,7 @@
 				<div id='instructions'>
 					<h1>PASSOS</h1>
 					<ol id='steps'>
+						<li>Faça login no sistema</li>
 						<li>Procure seu talhao no mapa</li>
 						<li>Selecione o talhao clicando <br>com o mouse ao redor dele</li>
 						<li>Certifique-se de que os pontos<br> se conectam no fim</li>
@@ -168,7 +171,13 @@
 					</ol>
 				</div>
 				<div id='map'>
-					<iframe src="https://www.doogal.co.uk/polylines.php#tabs" scrolling="no" frameBorder="0">
+					<?php
+						if(isset($_SESSION['usuarioLogado']) && $_SESSION['usuarioLogado']->getNome()!=null){
+							echo '<iframe src="https://www.doogal.co.uk/polylines.php#tabs" scrolling="no" frameBorder="0">';
+						}else{
+							echo "<iframe>";
+						}
+					?>
 					</iframe>
 				</div>
 			</div>
