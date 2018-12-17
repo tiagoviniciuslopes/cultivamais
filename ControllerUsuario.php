@@ -46,7 +46,10 @@
 			$usu->setSenha($senhaEncriptada);
 			
             $usu->setEmail($_POST["email"]);
-            $usu->setNome($_POST["nome"]);			
+			$usu->setNome($_POST["nome"]);		
+			$usu->setCpf($_POST["CPF"]);	
+			$usu->setTelefone($_POST["telefone"]);	
+			
 			$daoUsu = new DaoUsuario();
             $idUsuario = $daoUsu->inserir($usu); // idUsuario é o last insert id que retornou do DAO
             

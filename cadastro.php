@@ -32,6 +32,20 @@
     </div>
 
     <div class="form-group">
+      <label for="nome" class="col-md-3 col-sm-3 control-label">CPF</label>
+      <div class="col-md-9 col-sm-9">
+        <input type="text" class="form-control required"  placeholder="CPF" name="CPF" id="CPF">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nome" class="col-md-3 col-sm-3 control-label">Telefone</label>
+      <div class="col-md-9 col-sm-9">
+        <input type="text" class="form-control required"  placeholder="Telefone" name="telefone" id="telefone">
+      </div>
+    </div>
+
+    <div class="form-group">
       <label for="email" class="col-md-3 col-sm-3 control-label">Email</label>
       <div class="col-md-9 col-sm-9">
         <input type="text" class="form-control email required" name="email" id="email" placeholder="Email">

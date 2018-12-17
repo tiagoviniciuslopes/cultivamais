@@ -14,14 +14,16 @@
 			$this->conexao = null;
 		}
 		
-		public function inserir($usuario    ){
+		public function inserir($usuario ){
             $this->conectar();
             
             try{
-                $stmt = $this->conexao->prepare("INSERT INTO usuario (emailUsuario, senhaUsuario, nomeUsuario) VALUES (?, ?, ?)");
+                $stmt = $this->conexao->prepare("INSERT INTO usuario (emailUsuario, senhaUsuario, nomeUsuario, cpfUsuario, telefoneUsuario) VALUES (?, ?, ?, ?, ?)");
                 $stmt->bindValue(1, $usuario->getEmail());
                 $stmt->bindValue(2, $usuario->getSenha());
-                $stmt->bindValue(3, $usuario->getNome());
+				$stmt->bindValue(3, $usuario->getNome());
+				$stmt->bindValue(4, $usuario->getCpf());
+				$stmt->bindValue(5, $usuario->getTelefone());
 
                 $resultado = $stmt->execute();
 
@@ -47,7 +49,9 @@
 				$usuario = new Usuario();
 				foreach ($stmt as $row){
 					$usuario->setEmail($row["emailUsuario"]);
-                    $usuario->setSenha($row["senhaUsuario"]);
+					$usuario->setSenha($row["senhaUsuario"]);
+					$usuario->setCpf($row["cpfUsuario"]);
+					$usuario->setTelefone($row["telefoneUsuario"]);
                     $usuario->setNome($row["nomeUsuario"]);
                     $usuario->setIdUsuario($row["idUsuario"]);
 				}
