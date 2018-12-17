@@ -35,6 +35,10 @@
 				$this->editar();
 			}else if ($acao == "atualizar"){
 				$this->atualizar();
+			}else if($acao == "logar"){
+				$this->logar();
+			}else if($acao == "sair"){
+				$this->sair();
 			}
 		}
 		
@@ -49,7 +53,7 @@
 			$usu->setNome($_POST["nome"]);		
 			$usu->setCpf($_POST["CPF"]);	
 			$usu->setTelefone($_POST["telefone"]);	
-			
+
 			$daoUsu = new DaoUsuario();
             $idUsuario = $daoUsu->inserir($usu); // idUsuario é o last insert id que retornou do DAO
             
@@ -66,7 +70,7 @@
 			
 		}
 		
-		public function consultar(){						
+		public function logar(){						
 			$daoUsu = new DaoUsuario();
 			$usu = new Usuario();
 			
@@ -82,6 +86,81 @@
             session_write_close();
             
             header('Location: index.php');
+		}	
+
+		public function consultar(){						
+			$daoUsu = new DaoUsuario();
+			$usu = new Usuario();
+
+			if(isset($_POST["nome"])){
+				$usu->setNome($_POST["nome"]);
+			}
+            $vetUsu = $daoUsu->consultarNome($usu->getNome());
+            
+            echo '<html>
+			<head>
+		
+				<meta charset="utf-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+				<title>Cultiva+ KML Drawer</title>
+				<link href="js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		
+				<link href="https://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet">
+				<script src="https://maps.google.com/maps/api/js?key=AIzaSyC8-RhkdZpUSUL7k-rscOWE6PZB4IQi2rI&callback=initMap&libraries=drawing,places"></script>
+				<script src="script2.js"></script>
+				
+				<script src="js/jquery.min.js"></script>
+				<script src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+			</head>
+			<body>';
+            echo '<section class="conteudo col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">';
+	
+			echo '<div class="col-md-10 col-md-offset-1" style="padding:.5em">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2>Consulta de Clientes </h2>
+							<h5>Resultado da consulta</h5>
+						</div>
+				
+						<div class="panel-body">
+							<table class="table table-hover">
+								<th>ID</th>
+								<th>Nome</th>
+								<th>Email</th>
+								<th>CPF</th>
+								<th>Telefone</th>';
+				
+								
+								foreach($vetUsu as $item){
+									echo
+										"<tr>".
+											"<td>". $item->getIdUsuario() . "&nbsp; </td>".
+											"<td>
+												".
+											$item->getNome(). "&nbsp;
+											</td>".
+											"<td>"
+												.$item->getEmail() . "&nbsp;
+											</td>".
+											"<td>".
+												$item->getCpf() . "&nbsp;
+											</td>".
+											"<td>".
+												$item->getTelefone() . "&nbsp;
+											</td>".
+										"</tr>";
+								}
+		
+					
+		
+						echo'</table>
+						</div>
+					</div>
+				</div>';
+
+			echo '</section></body></html>';
 		}	
 		
 		public function sair(){

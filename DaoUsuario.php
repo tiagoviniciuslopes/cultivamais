@@ -62,5 +62,34 @@
 				echo "Erro: ".$ex->getMessage();
 			}
 		}
+
+		public function consultarNome($nome){
+			$this->conectar();
+
+			$vetUsu = null;
+			try{
+				$query = "SELECT * FROM usuario where nomeUsuario LIKE ?";
+				$stmt = $this->conexao->prepare($query);
+				$stmt->bindValue(1, '%'.$nome.'%');
+				$stmt->execute();
+
+				foreach ($stmt as $row){
+					$usuario = new Usuario();
+					$usuario->setEmail($row["emailUsuario"]);
+					$usuario->setSenha($row["senhaUsuario"]);
+					$usuario->setCpf($row["cpfUsuario"]);
+					$usuario->setTelefone($row["telefoneUsuario"]);
+                    $usuario->setNome($row["nomeUsuario"]);
+					$usuario->setIdUsuario($row["idUsuario"]);
+					
+					$vetUsu[] = $usuario;
+				}
+
+				$this->desconectar();
+				return $vetUsu;
+			}catch (PDOException $ex){
+				echo "Erro: ".$ex->getMessage();
+			}
+		}
 	}
 ?>
