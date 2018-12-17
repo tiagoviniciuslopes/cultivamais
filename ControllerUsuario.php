@@ -73,18 +73,27 @@
 		public function logar(){						
 			$daoUsu = new DaoUsuario();
 			$usu = new Usuario();
-			
 			session_start();
 
+			$senhaEncriptada = null;
 			if(isset($_POST["email"])){
 				$usu->setEmail($_POST["email"]);
 			}
-            $vetCliente = $daoUsu->consultar($usu->getEmail());
+			if(isset($_POST["senha"])){
+				$senhaEncriptada = sha1($_POST["senha"]);
+			}
+			$usu->setSenha($senhaEncriptada);
+
+			$vetCliente = $daoUsu->consultar($usu->getEmail());
             
-            
-            $_SESSION['usuarioLogado'] = $vetCliente;
-            session_write_close();
-            
+			if($vetCliente->getSenha() == $usu->getSenha()){
+				$_SESSION['usuarioLogado'] = $vetCliente;
+				session_write_close();
+			}else{
+				$_SESSION['usuarioLogado'] = null;
+				session_destroy();
+			}
+			
             header('Location: index.php');
 		}	
 
